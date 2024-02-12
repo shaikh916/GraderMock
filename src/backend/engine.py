@@ -37,7 +37,7 @@ def check_is_valid_python(code: str):
     (FOR NOW this doesn't work if the actual code raises an NameError Exception)
     """
     try:
-        eval(code)
+        exec(code)
     except Exception as err:
         if type(err) == NameError:
             return False 
@@ -54,7 +54,6 @@ def run_code(code : str, problem_path: str) -> str:
     return (Verdict): AC/MLE/RTE/TLE/CE
     """
     
-    # check that the code is valid Python code
     if not check_is_valid_python(code):
         return "CE"
     
@@ -90,3 +89,14 @@ def run_code(code : str, problem_path: str) -> str:
     
     
     
+    
+    [1, 2, 10, 4, 5, 6, 8] -> N 
+    [1, 2, 4] [10, 5, 6, 8]
+    [1] [2 4] [5] [10 6 8]
+    [1] [2] [4] [5] [6] [10 8]
+    [1] [2] [4] [5] [6] [8] [10]
+    
+    ...
+    
+    ...
+    ->
