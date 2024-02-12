@@ -20,7 +20,7 @@ This project is a mock version of a testing system like DMOJ or Leagues of Code.
 
 1. Clone the repository.
 ```bash
-git clone ...
+git clone https://github.com/aniervs/GraderMock
 ```
 2. Navigate to the repository's root folder.
 ```bash
