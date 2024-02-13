@@ -52,9 +52,9 @@ def run_code(code : str, problem_path: str) -> str:
     """
     
     if not check_is_valid_python(code):
-        return "CE"
+        return ["CE"]
     
-    verdicts = set()
+    verdicts = []
     
     for input, output in get_testcases(problem_path):
         with open("input_file.txt", "w") as file:
@@ -62,14 +62,14 @@ def run_code(code : str, problem_path: str) -> str:
         try:
             exec(code)
         except Exception:
-            verdicts.add("RTE")
+            verdicts.append("RTE")
             continue 
             
         with open("output_file.txt", "r") as file:
             if file.read() == output:
-                verdicts.add("AC")
+                verdicts.append("AC")
             else:
-                verdicts.add("WA")
+                verdicts.append("WA")
     
     try:
         os.remove("input_file.txt")
@@ -80,20 +80,7 @@ def run_code(code : str, problem_path: str) -> str:
         os.remove("output_file.txt")
     except FileNotFoundError:
         pass 
-           
-    if verdicts == {"AC"}:
-        return "AC"
-    
-    if "WA" in verdicts:
-        return "WA"
 
-    if "TLE" in verdicts:
-        return "TLE"
-    
-    if "MLE" in verdicts:
-        return "MLE"
-    
-    return "RTE"
-    
+    return verdicts
     
  

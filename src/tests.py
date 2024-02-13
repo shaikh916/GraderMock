@@ -65,15 +65,15 @@ file.close()
         
     def test_AC(self):
         real_verdict = run_code(self.correct_code, self.problem_path)
-        self.assertEqual(real_verdict, "AC")
+        self.assertEqual(real_verdict, ["AC", "AC"])
             
     def test_WA(self):
         real_verdict = run_code(self.incorrect_code, self.problem_path)
-        self.assertEqual(real_verdict, "WA")
+        self.assertEqual(real_verdict, ["WA", "WA"])
         
     def test_RE(self):
         real_verdict = run_code(self.buggy_code, self.problem_path)
-        self.assertEqual(real_verdict, "RTE")
+        self.assertEqual(real_verdict, ["RTE", "RTE"])
         
 
 main()
