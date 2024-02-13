@@ -1,4 +1,5 @@
 import os
+import dis
 
 def get_testcases(problem_path: str):
     """
@@ -33,15 +34,11 @@ def check_is_valid_python(code: str):
     """
     returns True if it's valid Python code
     return False otherwise
-    
-    (FOR NOW this doesn't work if the actual code raises an NameError Exception)
     """
     try:
-        exec(code)
-    except Exception as err:
-        if type(err) == NameError:
-            return False 
-        return True  
+        dis.Bytecode(code)
+    except SyntaxError:
+        return False 
     return True 
     
 
@@ -69,7 +66,8 @@ def run_code(code : str, problem_path: str) -> str:
             else:
                 verdicts.add("WA")
                 
-        # TODO: delete input_file.txt and output_file.txt
+        os.remove("input_file.txt")
+        os.remove("output_file.txt")
            
     if verdicts == {"AC"}:
         return "AC"

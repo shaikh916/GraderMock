@@ -1,5 +1,6 @@
 from unittest import TestCase, main
 from engine import get_testcases, check_is_valid_python, run_code
+import os 
 
 class TestGetTestCases(TestCase):
     def setUp(self):
@@ -28,7 +29,7 @@ class TestCheckIsValidPython(TestCase):
         self.assertTrue(check_is_valid_python(code))
 
     def test_false(self):
-        code = "printf('Hello world')"
+        code = "if 3 > 4\n\tprint('hi')"
         self.assertFalse(check_is_valid_python(code))
             
 class TestRunCode(TestCase):
@@ -53,14 +54,15 @@ file.close()
         
     def test_AC(self):
         real_verdict = run_code(self.correct_code, self.problem_path)
-        print(real_verdict)
         self.assertEqual(real_verdict, "AC")
-        # TODO: test that input_file.txt and output_file.txt do not exist
+        self.assertNotIn('input_file.txt', os.listdir())
+        self.assertNotIn('output_file.txt', os.listdir())
     
     def test_WA(self):
         real_verdict = run_code(self.incorrect_code, self.problem_path)
         self.assertEqual(real_verdict, "WA")
-        # TODO: test that input_file.txt and output_file.txt do not exist
+        self.assertNotIn('input_file.txt', os.listdir())
+        self.assertNotIn('output_file.txt', os.listdir())
 
 main()
     
