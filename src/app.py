@@ -16,8 +16,11 @@ if st.button("Submit"):
 
     verdicts = run_code(code, problem_path="example_problem")
 
-    for idx, verdict in enumerate(verdicts):
-        if verdict == "AC":
-            st.success(f"Testcase {idx + 1}: {verdict}")
-        else:
-            st.error(f"Testcase {idx + 1}: {verdict}")
+    if verdicts == "CE":
+        st.error("Compilation Error")
+    else:
+        for idx, verdict in enumerate(verdicts):
+            if verdict == "AC":
+                st.success(f"Testcase {idx + 1}: {verdict}")
+            else:
+                st.error(f"Testcase {idx + 1}: {verdict}")

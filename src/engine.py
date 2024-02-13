@@ -48,11 +48,11 @@ def run_code(code : str, problem_path: str) -> str:
     ---
     code (str): the source code to evalute, in Python!
     problem_path (str): the relative path to the problem's directory
-    return (Verdict): AC/MLE/RTE/TLE/CE
+    return (verdicts): either "CE" or a list of verdicts from  [AC, MLE, RTE, TLE, WA]
     """
     
     if not check_is_valid_python(code):
-        return ["CE"]
+        return "CE"
     
     verdicts = []
     
