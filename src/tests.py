@@ -49,20 +49,32 @@ file = open("output_file.txt", "w")
 file.write(str(a - b))
 file.close()
 """
-        
+        self.buggy_code = """file=open('input_file.txt', 'r')
+a, b = map(int, file2.readline().strip().split())
+file.close()
+file = open("output_file.txt", "w")
+file.write(str(a + b))
+file.close()
+"""
+     
         self.problem_path = "example_problem"
+
+    def tearDown(self) -> None:
+        self.assertNotIn('input_file.txt', os.listdir())
+        self.assertNotIn('output_file.txt', os.listdir())
         
     def test_AC(self):
         real_verdict = run_code(self.correct_code, self.problem_path)
         self.assertEqual(real_verdict, "AC")
-        self.assertNotIn('input_file.txt', os.listdir())
-        self.assertNotIn('output_file.txt', os.listdir())
-    
+            
     def test_WA(self):
         real_verdict = run_code(self.incorrect_code, self.problem_path)
         self.assertEqual(real_verdict, "WA")
-        self.assertNotIn('input_file.txt', os.listdir())
-        self.assertNotIn('output_file.txt', os.listdir())
+        
+    def test_RE(self):
+        real_verdict = run_code(self.buggy_code, self.problem_path)
+        self.assertEqual(real_verdict, "RTE")
+        
 
 main()
     

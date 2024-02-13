@@ -59,15 +59,27 @@ def run_code(code : str, problem_path: str) -> str:
     for input, output in get_testcases(problem_path):
         with open("input_file.txt", "w") as file:
             file.write(input)
-        exec(code)
+        try:
+            exec(code)
+        except Exception:
+            verdicts.add("RTE")
+            continue 
+            
         with open("output_file.txt", "r") as file:
             if file.read() == output:
                 verdicts.add("AC")
             else:
                 verdicts.add("WA")
-                
+    
+    try:
         os.remove("input_file.txt")
+    except FileNotFoundError:
+        pass 
+    
+    try:
         os.remove("output_file.txt")
+    except FileNotFoundError:
+        pass 
            
     if verdicts == {"AC"}:
         return "AC"
