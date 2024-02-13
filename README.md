@@ -63,4 +63,4 @@ alice_bob
 ## DEMO
 
 
-![DEMO](./assets/first_demo.mov)
+![DEMO](https://github.com/aniervs/GraderMock/assets/44501642/34700e4e-64ce-47b4-8ff7-10e1114524dd)
