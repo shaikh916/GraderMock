@@ -5,6 +5,9 @@ This project is a mock version of a testing system like DMOJ or Leagues of Code.
 - Given a problem from the system, you can submit a code, and it will test it throughout a set of testcases.
     - Compare the expected output with your code's output and give you and verdict.
 
+
+![DEMO](https://github.com/aniervs/GraderMock/assets/44501642/34700e4e-64ce-47b4-8ff7-10e1114524dd)
+
 ## Verdicts
 
 - `AC`: Accepted, your code passed all testcases.
@@ -59,8 +62,3 @@ alice_bob
 }
 ```
 - The `testcases/` folder contains the input and output testcases. For each testcase, a file `input<ID>.txt` and a file `output<ID>.txt`.
-
-## DEMO
-
-
-![DEMO](https://github.com/aniervs/GraderMock/assets/44501642/34700e4e-64ce-47b4-8ff7-10e1114524dd)
