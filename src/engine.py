@@ -42,7 +42,7 @@ def check_is_valid_python(code: str):
     return True 
     
 
-def run_code(code : str, problem_path: str) -> str:
+def run_code(code : str, problem_path: str) -> str | list[str]:
     """
     Params:
     ---
@@ -61,15 +61,15 @@ def run_code(code : str, problem_path: str) -> str:
             file.write(input)
         try:
             exec(code)
+
+            with open("output_file.txt", "r") as file:
+                if file.read() == output:
+                    verdicts.append("AC")
+                else:
+                    verdicts.append("WA")
         except Exception:
             verdicts.append("RTE")
             continue 
-            
-        with open("output_file.txt", "r") as file:
-            if file.read() == output:
-                verdicts.append("AC")
-            else:
-                verdicts.append("WA")
     
     try:
         os.remove("input_file.txt")
