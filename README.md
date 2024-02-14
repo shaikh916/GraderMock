@@ -54,7 +54,7 @@ alice_bob
     └── output2.txt
 ```
 - The `description.md` file contains the description in Markdown.
-- The `metadata.json` file contains the memory limit (in Bytes) and the time limit (in miliseconds):
+- The `metadata.json` file contains the memory limit (in MegaBytes) and the time limit (in miliseconds):
 ```Json
 {
   "memory_limit": 256,
