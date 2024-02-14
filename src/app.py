@@ -1,6 +1,8 @@
+from typing_extensions import ReadOnly
 import streamlit as st 
 from streamlit_ace import st_ace
 from engine import run_code
+from submission import submissions, Submission
 
 code = st_ace( "Your code goes here...",
     language="python",
@@ -15,6 +17,7 @@ if st.button("Submit"):
     st.code(code, language='python')
 
     verdicts = run_code(code, problem_path="example_problem")
+    submissions.append(Submission(code, verdicts))
 
     if verdicts == "CE":
         st.error("Compilation Error")
@@ -24,3 +27,18 @@ if st.button("Submit"):
                 st.success(f"Testcase {idx + 1}: {verdict}")
             else:
                 st.error(f"Testcase {idx + 1}: {verdict}")
+
+if len(submissions) != 0:
+    st.write("Submissions")
+for i, submission in list(enumerate(submissions))[::-1]:
+    with st.expander(f"Submission #{i + 1} -------- {submission.time.strftime('%B %d, %Y, %I:%M:%S')}"):
+        st_ace(submission.source_code, key=i, language="python", font_size=11, theme="chrome", readonly=True, auto_update=True)
+        if submission.verdicts == "CE":
+            st.error("Compilation Error")
+        else:
+            for idx, verdict in enumerate(submission.verdicts):
+                if verdict == "AC":
+                    st.success(f"Testcase {idx + 1}: {verdict}")
+                else:
+                    st.error(f"Testcase {idx + 1}: {verdict}")
+
