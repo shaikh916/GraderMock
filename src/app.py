@@ -59,3 +59,4 @@ for i, submission in list(enumerate(submissions))[::-1]:
         st_ace(submission.source_code, key=i, language="python", font_size=11, theme="chrome", readonly=True, auto_update=True)
         display_verdicts(submission.verdicts)
 
+
