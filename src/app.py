@@ -3,6 +3,19 @@ import streamlit as st
 from streamlit_ace import st_ace
 from engine import run_code
 from submission import submissions, Submission
+import os
+
+def get_Task_names():
+    try:
+        path = os.path.join(os.getcwd(), 'assets', 'problems')
+        elements = os.listdir(path)
+        folder_names = [element for element in elements if os.path.isdir(os.path.join(path, element))]
+        
+        return folder_names
+    except OSError as e:
+        print(f"error: {e}")
+        return None
+    
 
 def display_verdicts(verdicts: str | list[str]):
     if verdicts == "CE":
@@ -13,6 +26,15 @@ def display_verdicts(verdicts: str | list[str]):
                 st.success(f"Testcase {idx + 1}: {verdict}")
             else:
                 st.error(f"Testcase {idx + 1}: {verdict}")
+
+
+tasks = get_Task_names()
+
+for title in tasks:
+        st.write(title)
+        if st.button(f"Open Task {title}"):
+            st.write(f"{title}") #create page with task here
+
 
 code = st_ace( "Your code goes here...",
     language="python",
