@@ -67,9 +67,11 @@ def run_code(code : str, problem_path: str) -> str | list[str]:
                     verdicts.append("AC")
                 else:
                     verdicts.append("WA")
+                    break 
+
         except Exception:
             verdicts.append("RTE")
-            continue 
+            break 
     
     try:
         os.remove("input_file.txt")

@@ -71,15 +71,15 @@ file.close()
             
     def test_WA(self):
         real_verdict = run_code(self.incorrect_code, self.problem_path)
-        self.assertEqual(real_verdict, ["WA", "WA"])
+        self.assertEqual(real_verdict, ["WA"])
         
     def test_RE(self):
         real_verdict = run_code(self.buggy_code, self.problem_path)
-        self.assertEqual(real_verdict, ["RTE", "RTE"])
+        self.assertEqual(real_verdict, ["RTE"])
         
     def test_hello_world(self):
         real_verdict = run_code(self.hello_world, self.problem_path)
-        self.assertEqual(real_verdict, ["RTE", "RTE"])
+        self.assertEqual(real_verdict, ["RTE"])
         
 
 main()
