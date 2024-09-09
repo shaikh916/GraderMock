@@ -1,6 +1,6 @@
 # Grader
 
-This project is a mock version of a testing system like DMOJ or Leagues of Code.
+This project is a basic mock version of a testing system like DMOJ or Leetcode.
 
 - Given a problem from the system, you can submit a code, and it will test it throughout a set of testcases.
     - Compare the expected output with your code's output and give you and verdict.
