@@ -1,5 +1,6 @@
+
 from typing_extensions import ReadOnly
-import streamlit as st 
+import streamlit as st
 from streamlit_ace import st_ace
 from engine import run_code
 from submission import submissions, Submission
@@ -33,10 +34,11 @@ tasks = get_Task_names()
 for title in tasks:
         st.write(title)
         if st.button(f"Open Task {title}"):
-            st.write(f"{title}") #create page with task here
+            st.write(f"{title}")  # create page with task here
 
 
-code = st_ace( "Your code goes here...",
+code = st_ace(
+    "Your code goes here...",
     language="python",
     font_size=13,
     theme="chrome",
@@ -48,6 +50,7 @@ if st.button("Submit"):
     st.write("Submitted")
     st.code(code, language='python')
 
+    # Simulating problem path for now, assuming it will be properly assigned during testing.
     verdicts = run_code(code, problem_path="example_problem")
     submissions.append(Submission(code, verdicts))
     display_verdicts(verdicts)
@@ -58,5 +61,3 @@ for i, submission in list(enumerate(submissions))[::-1]:
     with st.expander(f"Submission #{i + 1} -------- {submission.time.strftime('%B %d, %Y, %I:%M:%S')}"):
         st_ace(submission.source_code, key=i, language="python", font_size=11, theme="chrome", readonly=True, auto_update=True)
         display_verdicts(submission.verdicts)
-
-
